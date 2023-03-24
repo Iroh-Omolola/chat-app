@@ -3,22 +3,19 @@ import { BsFillSendFill } from "react-icons/bs";
 import { supabase } from "../lib/api";
 import ChatBubble from "./ChatBubble";
 import Header from "./Header";
+import UserUpdate from "./UserUpdate";
 
 let messageSubscription = null;
 
-const Chat = ({
-  user_name,
-  user_id,
-  setCheckUserName,
-  checkUserName,
-  userName,
-  setUserName,
-}) => {
+const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [room, setRoom] = useState("general");
   const [userId, setUserId] = useState("");
   const [sender, setSender] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [checkUserName, setCheckUserName] = useState(false);
 
   useEffect(() => {
     loadMessages();
@@ -49,6 +46,7 @@ const Chat = ({
       setMessages(data);
     }
   };
+  console.log("check", checkUserName);
 
   const sendMessage = async (messageText) => {
     try {
@@ -94,7 +92,7 @@ const Chat = ({
 
   const handleRoomChange = (event) => {
     if (event.target.value !== "" && userName !== " ") {
-      setCheckUserName(false);
+      setCheckUserName(true);
       setRoom(event.target.value);
     } else {
       setCheckUserName(false);
@@ -111,6 +109,21 @@ const Chat = ({
       setSender(true);
     }
   }, [message, userId]);
+
+  const onUpdateUser = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const { data } = await supabase.auth.updateUser({
+        user_name: userName,
+      });
+      setLoading(false);
+      setError("");
+    } catch (e) {
+      console.error({});
+      setError(e);
+    }
+  };
 
   return (
     <div className="flex flex-col h-screen bg-[#0f1e3c]">
@@ -149,6 +162,15 @@ const Chat = ({
           <BsFillSendFill className="w-7 h-7" />
         </button>
       </form>
+      {checkUserName !== false && (
+        <UserUpdate
+          userName={userName}
+          setUserName={setUserName}
+          onUpdateUser={onUpdateUser}
+          loading={loading}
+          error={error}
+        />
+      )}
     </div>
   );
 };
