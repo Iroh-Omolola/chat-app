@@ -54,7 +54,7 @@ function App() {
             userName={userName}
             username={session?.user?.user_metadata?.user_name}
           />
-          {!checkUserName && (
+          {checkUserName ===false && (
             <UserUpdate
               userName={userName}
               setUserName={setUserName}

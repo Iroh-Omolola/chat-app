@@ -56,7 +56,7 @@ const Auth = () => {
             <input
               type="text"
               className="block appearance-none focus:outline-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-              placeholder="Your username"
+              placeholder="Your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
