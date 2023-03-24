@@ -11,8 +11,8 @@ const Auth = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: "https://example.com/welcome",
-        shouldCreateUser:false,
+        emailRedirectTo: "http://localhost:3000/",
+        shouldCreateUser: false,
       },
     });
     if (error) {
