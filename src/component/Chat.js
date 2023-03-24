@@ -46,7 +46,6 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       setMessages(data);
     }
   };
-  console.log("check", checkUserName);
 
   const sendMessage = async (messageText) => {
     try {
