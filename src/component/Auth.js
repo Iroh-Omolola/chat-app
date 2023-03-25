@@ -31,13 +31,14 @@ console.log("data",data);
       signUpWithEmail(email, password);
       setLoading(true);
       if (!error) {
-        setType("signup");
-        setLoading(false);
-      }
-      if (error) {
         setLoading(false);
         setType("login");
         setError("");
+      }
+      if (error) {
+        setLoading(false);
+        setType("signup");
+
       }
     }
    
