@@ -27,7 +27,7 @@ const Header = ({createRoom, rooms, room, handleRoomChange }) => {
             <option value="general">General</option>
             <option value="random">Random</option>
             {rooms.map((room) => (
-              <option value="test">{room?.room_name}</option>
+              <option value={room?.room_name}>{room?.room_name}</option>
             ))}
           </select>
         </div>

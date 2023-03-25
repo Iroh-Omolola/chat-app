@@ -68,7 +68,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     return () => {
       supabase.removeAllChannels();
     };
-  }, []);
+  }, [roomName]);
 
   const loadMessages = async () => {
     const { data, error } = await supabase
@@ -138,7 +138,6 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         .single();
       if (error) console.log(error);
       else {
-        setRoomName("");
         console.log("data", data);
         setRooms([...rooms, data]);
       }
@@ -151,6 +150,12 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     e.preventDefault();
     if (roomName !== "") {
       createRoom(roomName);
+      setRoomLoading(true);
+      setShowRoom(false)
+      setRoomName("");
+      setRoomLoading(false);
+
+
     }
   };
 
