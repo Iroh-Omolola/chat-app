@@ -17,7 +17,6 @@ const Auth = () => {
 
     if (error !== "") {
       setError(error.message);
-      setType("signup");
     }
   }
 
@@ -30,6 +29,7 @@ const Auth = () => {
     if (error !== "") {
       setType("signup");
       setError("");
+      setLoading(false);
     }
     if (error === "") {
       setLoading(false);
