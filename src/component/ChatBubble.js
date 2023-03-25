@@ -44,9 +44,7 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           {time}
         </span>
       </div>
-      <p>
-        {room !=="" ? username :""}
-      </p>
+
       {messageId === userId && (
         <span>
           <svg
@@ -67,6 +65,7 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           </svg>
         </span>
       )}
+      <p>{room !== "" ? username : ""}</p>
     </div>
   );
 };
