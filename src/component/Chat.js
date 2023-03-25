@@ -13,6 +13,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [message, setMessage] = useState("");
   const [room, setRoom] = useState("general");
   const [userId, setUserId] = useState("");
+  const [email, setEmail] = useState("");
   const [sender, setSender] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -88,6 +89,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const getUserName = async () => {
     const { data } = await supabase.auth.getUser();
     if (data) {
+      setEmail(data.user?.email);
       setUserName(data.user?.user_metadata?.user_name);
     }
   };
@@ -119,9 +121,11 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await supabase.auth.updateUser({
-        user_name: userName,
+      const { data, error } = await supabase.auth.updateUser({
+        email,
+        data: { user_name: userName },
       });
+      console.log("data", data)
       setLoading(false);
       setError("");
     } catch (e) {
