@@ -44,7 +44,7 @@ const CreateRoom = ({roomName,onCreateRoomSetup,onCancel, purpose, error, loadin
                     onChange={(e) => setPurpose(e.target.value)}
                   />
                 </div>
-                <div>
+                <div className="flex space-x-3">
                   <div className=" flex justify-center flex-col gap-2">
                     <button
                       onClick={onCancel}
