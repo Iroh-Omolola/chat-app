@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import moment from "moment";
+import { useState, useEffect, useRef } from "react";
 import { BsFillSendFill } from "react-icons/bs";
 import { supabase } from "../lib/api";
 import ChatBubble from "./ChatBubble";
@@ -16,6 +17,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [checkUserName, setCheckUserName] = useState(false);
+  const messagesRef = useRef();
 
   useEffect(() => {
     loadMessages();
@@ -26,6 +28,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         { event: "INSERT", schema: "public", table: "messages" },
         (payload) => {
           setMessages((messages) => [...messages, payload.new]);
+          
         }
       )
       .subscribe();
@@ -44,6 +47,9 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     if (error) console.error(error);
     else {
       setMessages(data);
+      if (messagesRef.current) {
+        messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+      }
     }
   };
 
@@ -131,7 +137,10 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         room={room}
         handleRoomChange={handleRoomChange}
       />
-      <div className="flex-1 p-4 overflow-y-scroll bg-[#d2e3ff]">
+      <div
+        className="flex-1 p-4 overflow-y-scroll bg-[#d2e3ff]"
+        ref={messagesRef}
+      >
         {messages &&
           messages.length > 0 &&
           messages.map((message) => (
@@ -140,6 +149,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
               key={message?.id}
               myKey={message?.id}
               messageId={message?.user_id}
+              time={moment(message?.created_at).format("h:mm:ss a")}
               userId={user_id}
               message={message?.message}
             />

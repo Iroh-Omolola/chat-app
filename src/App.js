@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { supabase } from "./lib/api";
 import Auth from "./component/Auth";
 import Chat from "./component/Chat";
-import UserUpdate from "./component/UserUpdate";
 
 function App() {
   const [session, setSession] = useState(null);
