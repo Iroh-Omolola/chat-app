@@ -24,18 +24,18 @@ const Auth = () => {
     e.preventDefault();
     if (email !== "" && password !== "") {
       signUpWithEmail(email, password);
+      setLoading(true);
+      if (error !== "") {
+        setType("signup");
+        setLoading(false);
+      }
+      if (error === "") {
+        setLoading(false);
+        setType("login");
+        setError("");
+      }
     }
-    setLoading(true);
-    if (error !== "") {
-      setType("signup");
-      setError("");
-      setLoading(false);
-    }
-    if (error === "") {
-      setLoading(false);
-      setType("login");
-      setError("");
-    }
+   
   };
 
   async function signInWithOtp() {
