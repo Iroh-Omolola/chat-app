@@ -134,7 +134,7 @@ const Auth = () => {
           <div>
             <div className=" flex justify-center flex-col gap-2">
               <button
-                onClick={signIn}
+                onClick={(e)=>signIn(e)}
                 className="btn-black  cursor-pointer text-center hover:bg-[black] p-2 bg-background_color text-[white]"
               >
                 Sign In
