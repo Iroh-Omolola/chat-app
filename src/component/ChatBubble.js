@@ -4,7 +4,7 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
   return (
     <div
       key={myKey}
-      className={`flex flex-col ${
+      className={`flex ${
         messageId === userId ? "justify-end" : "justify-start"
       }`}
     >
@@ -28,23 +28,25 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           </svg>
         )}
       </span>
-      <div
-        className={`flex flex-col space-y-1 ${
-          messageId === userId && `rounded-bl-lg bg-[#7294b2] `
-        } ${
-          messageId !== userId && !sender && `rounded-tr-lg bg-[#7294b2]`
-        }   rounded-bl-lg  whitespace-normal max-w-[100%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] rounded-br-lg mb-4 px-4 py-2`}
-      >
-        <p className="text-[#151515]"> {message}</p>
-        <span
-          className={`${
-            messageId === userId ? "text-end" : "text-start"
-          } text-[10px]`}
+      <div>
+        <div
+          className={`flex flex-col space-y-1 ${
+            messageId === userId && `rounded-bl-lg bg-[#7294b2] `
+          } ${
+            messageId !== userId && !sender && `rounded-tr-lg bg-[#7294b2]`
+          }   rounded-bl-lg  whitespace-normal max-w-[100%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] rounded-br-lg mb-4 px-4 py-2`}
         >
-          {time}
-        </span>
+          <p className="text-[#151515]"> {message}</p>
+          <span
+            className={`${
+              messageId === userId ? "text-end" : "text-start"
+            } text-[10px]`}
+          >
+            {time}
+          </span>
+        </div>
+        <p className="text-[12px]">{room !== "" ? username : ""}</p>
       </div>
-
       {messageId === userId && (
         <span>
           <svg
@@ -65,7 +67,6 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           </svg>
         </span>
       )}
-      <p className="text-[12px]">{room !== "" ? username : ""}</p>
     </div>
   );
 };
