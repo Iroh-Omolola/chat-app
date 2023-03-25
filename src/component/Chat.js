@@ -48,6 +48,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     };
   }, [room, message]);
 
+  console.log(messages)
   const loadMessages = async () => {
     const { data, error } = await supabase
       .from("messages")
@@ -70,7 +71,9 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       let message = messageText.trim();
       const { data, error } = await supabase
         .from("messages")
-        .insert([{ message, user_id: userId, room }])
+        .insert([
+          { message, user_id: userId, message_user_name: userName, room },
+        ])
         .single();
       if (error) console.log({});
       else {
