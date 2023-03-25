@@ -63,6 +63,8 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       )
       .subscribe();
 
+      console.log(rooms);
+
     return () => {
       supabase.removeAllChannels();
     };
@@ -176,11 +178,9 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   }, []);
 
   const handleRoomChange = (event) => {
-    if (event.target.value !== "" && userName !== " ") {
+    if (userName !== " ") {
       setCheckUserName(true);
       setRoom(event.target.value);
-    } else if (event.target.value === "") {
-      setCheckUserName(false);
     } else {
       setCheckUserName(false);
     }
@@ -263,7 +263,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           <BsFillSendFill className="w-7 h-7" />
         </button>
       </form>
-      {checkUserName !== false && (
+      {checkUserName !== false &&  (
         <UserUpdate
           userName={userName}
           setUserName={setUserName}
