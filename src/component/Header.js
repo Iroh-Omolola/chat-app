@@ -12,7 +12,6 @@ const Header = ({createRoom, room, handleRoomChange }) => {
           className="cursor-pointer flex flex-col justify-center"
           onClick={createRoom}
         >
-          <h4 className="text-[white]">Create Rooms</h4>
           <div className="flex justify-center text-center">
             <IoIosPeople className="w-8 h-8" />
           </div>
