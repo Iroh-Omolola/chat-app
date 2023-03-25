@@ -13,7 +13,9 @@ const Header = ({createRoom, room, handleRoomChange }) => {
           onClick={createRoom}
         >
           <h4 className="text-[white]">Create Rooms</h4>
-          <IoIosPeople className="w-8 h-8 flex justify-center text-center" />
+          <div className="flex justify-center text-center">
+            <IoIosPeople className="w-8 h-8" />
+          </div>
         </div>
         <div className="ml-4">
           <h2 className="text-[white]">Chat Rooms</h2>
