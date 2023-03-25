@@ -148,8 +148,8 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
 
   const onCreate = (e) => {
     e.preventDefault();
-    if (room !== "") {
-      createRoom(room);
+    if (roomName !== "") {
+      createRoom(roomName);
     }
   };
 
