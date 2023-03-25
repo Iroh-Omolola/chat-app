@@ -71,7 +71,12 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       const { data, error } = await supabase
         .from("messages")
         .insert([
-          { message, user_id: userId, message_user_name: userName, room },
+          {
+            message,
+            user_id: userId,
+            message_user_name: userName + new Date().getMilliseconds(),
+            room,
+          },
         ])
         .single();
       if (error) console.log({});
@@ -174,9 +179,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
               time={moment(message?.created_at).format("h:mm a")}
               userId={user_id}
               room={room}
-              username={
-                `${message?.message_user_name}` + new Date().getMilliseconds()
-              }
+              username={`${message?.message_user_name}`}
               message={message?.message}
             />
           ))}

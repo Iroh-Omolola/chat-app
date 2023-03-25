@@ -20,7 +20,7 @@ const ChatBubble = ({
       <span>
         {messageId !== userId && !sender && (
           <svg
-            className="text-[#77c0ff] -scale-x-[1] "
+            className="text-[#a0aef0] -scale-x-[1] "
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 8 13"
             width="8"
@@ -41,7 +41,7 @@ const ChatBubble = ({
         className={`flex flex-col space-y-1 ${
           messageId === userId && `rounded-bl-lg bg-[#7294b2] `
         } ${
-          messageId !== userId && !sender && `rounded-tr-lg bg-[#77c0ff]`
+          messageId !== userId && !sender && `rounded-tr-lg bg-[#a0aef0]`
         }   rounded-bl-lg  whitespace-normal max-w-[100%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] rounded-br-lg mb-4 px-4 py-2`}
       >
         <p className="text-[#151515]"> {message}</p>
