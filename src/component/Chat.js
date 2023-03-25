@@ -130,7 +130,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data, error } = await supabase.auth.updateUser({
+      const { error } = await supabase.auth.updateUser({
         email,
         data: { user_name: userName },
       });
@@ -169,9 +169,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
               messageId={message?.user_id}
               time={moment(message?.created_at).format("h:mm a")}
               userId={user_id}
-              room={room}
               message={message?.message}
-              username={userName}
             />
           ))}
       </div>

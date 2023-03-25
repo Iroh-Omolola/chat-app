@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, message }) => {
+const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
   return (
     <div
       key={myKey}
@@ -65,7 +65,6 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           </svg>
         </span>
       )}
-      <p className="text-[12px]">{room !== "" ? username : ""}</p>
     </div>
   );
 };
