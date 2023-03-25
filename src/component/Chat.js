@@ -170,6 +170,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
               time={moment(message?.created_at).format("h:mm a")}
               userId={user_id}
               message={message?.message}
+              username={message?.user_name}
             />
           ))}
       </div>
@@ -206,8 +207,8 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           error={roomError}
           loading={roomLoading}
           setPurpose={setPurpose}
-          onCancel={()=>setShowRoom(false)}
-          onCreateRoomSetup={()=>{}}
+          onCancel={() => setShowRoom(false)}
+          onCreateRoomSetup={() => {}}
           setRoomName={setRoomName}
         />
       )}

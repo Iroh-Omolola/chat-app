@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
+const ChatBubble = ({ myKey, sender,username, time, messageId, userId, message }) => {
   return (
     <div
       key={myKey}
@@ -44,6 +44,9 @@ const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
           {time}
         </span>
       </div>
+      <p>
+        {username}
+      </p>
       {messageId === userId && (
         <span>
           <svg
