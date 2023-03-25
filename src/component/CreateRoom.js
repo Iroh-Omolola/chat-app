@@ -1,6 +1,16 @@
+import { supabase } from "../lib/api";
 
-
-const CreateRoom = ({roomName,onCreateRoomSetup,onCancel, purpose, error, loading, setPurpose, setRoomName}) => {
+const CreateRoom = ({
+  roomName,
+  onCreateRoomSetup,
+  onCancel,
+  purpose,
+  error,
+  loading,
+  setPurpose,
+  setRoomName,
+}) => {
+  
 
   return (
     <div className="overflow-y-auto overflow-x-hidden fixed top-[-45px] mmd:top-0 bg-blackAlpha right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-[100vh]">
@@ -30,18 +40,6 @@ const CreateRoom = ({roomName,onCreateRoomSetup,onCancel, purpose, error, loadin
                     placeholder="Your username"
                     value={roomName}
                     onChange={(e) => setRoomName(e.target.value)}
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="font-bold text-grey-darker block mb-2">
-                    Purpose of Room
-                  </label>
-                  <input
-                    type="text"
-                    className="block appearance-none w-full bg-white focus:outline-none border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                    placeholder="Your username"
-                    value={purpose}
-                    onChange={(e) => setPurpose(e.target.value)}
                   />
                 </div>
                 <div className="flex space-x-3">

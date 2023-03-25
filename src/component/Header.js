@@ -1,7 +1,7 @@
 import { supabase } from "../lib/api";
 import { IoIosPeople } from "react-icons/io";
 
-const Header = ({createRoom, room, handleRoomChange }) => {
+const Header = ({createRoom, rooms, room, handleRoomChange }) => {
   return (
     <div className="flex items-center justify-between px-4 py-8 bg-background_color">
       <div className="flex items-center space-x-5 sm:space-x-8">
@@ -26,7 +26,9 @@ const Header = ({createRoom, room, handleRoomChange }) => {
             <option value={""}>Enter room</option>
             <option value="general">General</option>
             <option value="random">Random</option>
-            <option value="test">Test</option>
+            {rooms.map((room) => (
+              <option value="test">{room?.room_name}</option>
+            ))}
           </select>
         </div>
       </div>

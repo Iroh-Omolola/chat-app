@@ -8,9 +8,11 @@ import Header from "./Header";
 import UserUpdate from "./UserUpdate";
 
 let messageSubscription = null;
+let roomSubscription = null;
 
 const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [messages, setMessages] = useState([]);
+  const [rooms, setRooms] = useState([]);
   const [message, setMessage] = useState("");
   const [room, setRoom] = useState("general");
   const [userId, setUserId] = useState("");
@@ -20,7 +22,6 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [error, setError] = useState("");
   const [nameError, setNameError] = useState("");
   const [roomName, setRoomName] = useState("");
-  const [purpose, setPurpose] = useState("");
   const [roomError, setRoomError] = useState("");
   const [roomLoading, setRoomLoading] = useState(false);
   const [showRoom, setShowRoom] = useState(false);
@@ -48,6 +49,24 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     };
   }, [room, message]);
 
+  useEffect(() => {
+    loadRooms();
+    roomSubscription = supabase
+      .channel("public:rooms")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "rooms" },
+        (payload) => {
+          setRooms((rooms) => [...rooms, payload.new]);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeAllChannels();
+    };
+  }, []);
+
   const loadMessages = async () => {
     const { data, error } = await supabase
       .from("messages")
@@ -60,6 +79,17 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       if (messagesRef.current) {
         messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
       }
+    }
+  };
+
+  const loadRooms = async () => {
+    const { data, error } = await supabase
+      .from("rooms")
+      .select()
+      .order("created_at", { ascending: true });
+    if (error) console.error(error);
+    else {
+      setRooms(data);
     }
   };
 
@@ -86,6 +116,37 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       }
     } catch (error) {
       console.error({});
+    }
+  };
+
+  const createRoom = async (roomName) => {
+    try {
+      supabase.removeChannel(roomSubscription);
+
+      let roomTitle = roomName.trim();
+      const { data, error } = await supabase
+        .from("rooms")
+        .insert([
+          {
+            user_id: userId,
+            room_name: roomTitle,
+          },
+        ])
+        .single();
+      if (error) console.log({});
+      else {
+        setRoom("");
+        setRooms([...rooms, data]);
+      }
+    } catch (error) {
+      console.error({});
+    }
+  };
+
+  const onCreate = (e) => {
+    e.preventDefault();
+    if (room !== "") {
+      createRoom(room);
     }
   };
 
@@ -161,6 +222,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       <Header
         username={user_name}
         room={room}
+        rooms={rooms}
         createRoom={() => setShowRoom(true)}
         handleRoomChange={handleRoomChange}
       />
@@ -213,12 +275,10 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       {showRoom && (
         <CreateRoom
           roomName={roomName}
-          purpose={purpose}
           error={roomError}
           loading={roomLoading}
-          setPurpose={setPurpose}
           onCancel={() => setShowRoom(false)}
-          onCreateRoomSetup={() => {}}
+          onCreateRoomSetup={onCreate}
           setRoomName={setRoomName}
         />
       )}
