@@ -17,6 +17,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [sender, setSender] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [nameError, setNameError] = useState("");
   const [checkUserName, setCheckUserName] = useState(false);
   const messagesRef = useRef();
 
@@ -29,7 +30,6 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         { event: "INSERT", schema: "public", table: "messages" },
         (payload) => {
           setMessages((messages) => [...messages, payload.new]);
-          
         }
       )
       .subscribe();
@@ -125,9 +125,13 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         email,
         data: { user_name: userName },
       });
-      console.log("data", data)
-      setLoading(false);
-      setError("");
+      if (error) {
+        setNameError(error);
+      } else {
+        setCheckUserName(false);
+        setLoading(false);
+        setError("");
+      }
     } catch (e) {
       console.error({});
       setError(e);
