@@ -25,11 +25,11 @@ console.log(error)
     if (email !== "" && password !== "") {
       signUpWithEmail(email, password);
       setLoading(true);
-      if (error !== "") {
+      if (!error) {
         setType("signup");
         setLoading(false);
       }
-      if (error === "") {
+      if (error) {
         setLoading(false);
         setType("login");
         setError("");
@@ -53,13 +53,14 @@ console.log(error)
   }
   const signIn = (e) => {
     e.preventDefault();
-    setLoading(true);
     if (email !== "") {
       signInWithOtp(email);
+    setLoading(true);
+      setLoading(false);
+      setCheckEmail(true);
+      setError("");
     }
-    setLoading(false);
-    setCheckEmail(true);
-    setError("");
+    
   };
 
   return (
