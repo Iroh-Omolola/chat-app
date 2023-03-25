@@ -165,7 +165,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       >
         {messages &&
           messages.length > 0 &&
-          messages.map((message) => (
+          messages.map((message, index) => (
             <ChatBubble
               sender={sender}
               key={message?.id}
@@ -174,7 +174,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
               time={moment(message?.created_at).format("h:mm a")}
               userId={user_id}
               room={room}
-              username={message?.message_user_name}
+              username={`${message?.message_user_name}`+ index + 1}
               message={message?.message}
             />
           ))}
