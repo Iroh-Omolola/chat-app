@@ -19,7 +19,7 @@ const Auth = () => {
       setError(error.message);
     }
   }
-
+console.log(error)
   const signUp = (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
