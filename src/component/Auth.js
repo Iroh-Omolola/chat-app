@@ -10,7 +10,7 @@ const Auth = () => {
   const [checkEmail, setCheckEmail] = useState(false);
 
   async function signUpWithEmail() {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -19,11 +19,8 @@ const Auth = () => {
       setError(error.message);
       setType("signup");
       setLoading(false);
-console.log("data", data);
-
     }
   }
-console.log("error",error)
   const signUp = (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
