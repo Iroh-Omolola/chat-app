@@ -63,12 +63,11 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       )
       .subscribe();
 
-      console.log(rooms);
 
     return () => {
       supabase.removeAllChannels();
     };
-  }, [roomName]);
+  }, [rooms]);
 
   const loadMessages = async () => {
     const { data, error } = await supabase
@@ -136,9 +135,8 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           },
         ])
         .single();
-      if (error) console.log(error);
+      if (error) console.log({});
       else {
-        console.log("data", data);
         setRooms([...rooms, data]);
       }
     } catch (error) {
