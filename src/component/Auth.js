@@ -24,9 +24,12 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
     signUpWithEmail(email, password);
-    setLoading(false);
-    setType("login");
-    setError("");
+    if(error===""){
+      setLoading(false);
+      setType("login");
+    }
+      setError("");
+   
   };
 
   async function signInWithOtp() {
