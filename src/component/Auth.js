@@ -3,6 +3,7 @@ import { supabase } from "../lib/api";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
+  const [loginError, setLoginError] = useState("");
   const [error, setError] = useState("");
   const [data, setData] = useState("");
   const [password, setPassword] = useState("");
@@ -46,7 +47,7 @@ const Auth = () => {
       },
     });
     if (error) {
-      setError(error.message);
+      setLoginError(error.message);
       throw new Error(error.message);
     }
   }
@@ -54,31 +55,36 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
     signInWithOtp(email);
-    setLoading(false);
-    setCheckEmail(true);
-    setError("");
+    if(loginError===""){
+      setLoading(false);
+      setCheckEmail(true);
+    }
+    setLoginError("");
   };
 
   return (
     <div className="w-full my-[50%] md:my-[30%] lg:my-[10%] sm:w-1/2 xl:w-1/3">
       <div>
         <h4 className="text-[16px] text-center text-background_color">
-         { type==="login"?"LOG IN" :"SIGN UP"}
+          {type === "login" ? "LOG IN" : "SIGN UP"}
         </h4>
       </div>
-      {error !=="" && (
-        <div>
-          <h4 className="text-[red] text-center">{error}</h4>
-        </div>
-      )}
+
       {loading && <p>loading.....</p>}
-      {checkEmail && error === "" (
-        <p className="text-center text-[red]">
-          Check your mail and click on the link!!!
-        </p>
-      )}
-      {!loading && !checkEmail && type === "signup" && error=== ""&& (
-        <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
+      {checkEmail &&
+        error ===
+          ""(
+            <p className="text-center text-[red]">
+              Check your mail and click on the link!!!
+            </p>
+          )}
+      {!loading && !checkEmail && type === "signup" && error === "" && (
+        <div className="border-teal p-8 border-t-12 mb-6 rounded-lg shadow-lg bg-[white]">
+          {error !== "" && (
+            <div>
+              <h4 className="text-[red] text-center">{error}</h4>
+            </div>
+          )}
           <div className="mb-4">
             <label className="font-bold text-grey-darker block mb-2">
               Email
@@ -115,8 +121,13 @@ const Auth = () => {
           </div>
         </div>
       )}
-      {!loading && !checkEmail && type === "login" && error=== "" &&  (
-        <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
+      {!loading && !checkEmail && type === "login" && loginError === "" && (
+        <div className="border-teal p-8 border-t-12 mb-6 rounded-lg shadow-lg bg-[white]">
+          {loginError !== "" && (
+            <div>
+              <h4 className="text-[red] text-center">{loginError}</h4>
+            </div>
+          )}
           <div className="mb-4">
             <label className="font-bold text-grey-darker block mb-2">
               Email
