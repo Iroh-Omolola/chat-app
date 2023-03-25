@@ -64,7 +64,7 @@ const Auth = () => {
         </div>
       )}
       {loading && <p>loading.....</p>}
-      {checkEmail && (
+      {checkEmail && error === "" (
         <p className="text-center text-[red]">
           Check your mail and click on the link!!!
         </p>
