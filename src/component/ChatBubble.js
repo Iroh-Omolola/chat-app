@@ -4,7 +4,7 @@ const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
   return (
     <div
       key={myKey}
-      className={`flex flex-col ${
+      className={`flex ${
         messageId === userId ? "justify-end" : "justify-start"
       }`}
     >
@@ -44,7 +44,6 @@ const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
           {time}
         </span>
       </div>
-
       {messageId === userId && (
         <span>
           <svg
