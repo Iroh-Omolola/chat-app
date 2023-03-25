@@ -36,6 +36,9 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         { event: "INSERT", schema: "public", table: "messages" },
         (payload) => {
           setMessages((messages) => [...messages, payload.new]);
+          if (messagesRef.current) {
+            messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+          }
         }
       )
       .subscribe();
