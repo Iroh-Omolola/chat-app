@@ -27,9 +27,9 @@ const Auth = () => {
     if(error===""){
       setLoading(false);
       setType("login");
-    }
-      setError("");
-   
+    }   
+    setError("");
+
   };
 
   async function signInWithOtp() {
@@ -110,7 +110,7 @@ const Auth = () => {
           </div>
         </div>
       )}
-      {!loading && !checkEmail && type === "login" && (
+      {!loading && !checkEmail && type === "login" && error=== ""&&  (
         <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
           <div className="mb-4">
             <label className="font-bold text-grey-darker block mb-2">
