@@ -20,13 +20,13 @@ const Auth = () => {
       setType("signup");
     }
   }
+
   const signUp = (e) => {
     e.preventDefault();
-    setLoading(true);
     if (email !== "" && password !== "") {
       signUpWithEmail(email, password);
     }
-
+    setLoading(true);
     if (error !== "") {
       setType("signup");
     }
@@ -74,13 +74,11 @@ const Auth = () => {
         </div>
       )}
       {loading && <p>loading.....</p>}
-      {checkEmail &&
-        error ===
-          ""(
-            <p className="text-center text-[red]">
-              Check your mail and click on the link!!!
-            </p>
-          )}
+      {checkEmail && error === "" && (
+        <p className="text-center text-[red]">
+          Check your mail and click on the link!!!
+        </p>
+      )}
       {!loading && !checkEmail && type === "signup" && error === "" && (
         <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
           <div className="mb-4">
