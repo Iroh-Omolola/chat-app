@@ -104,7 +104,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           {
             message,
             user_id: userId,
-            message_user_name: userName + new Date().getMilliseconds(),
+            message_user_name: userName,
             room,
           },
         ])
@@ -202,7 +202,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       setLoading(true);
       const { error } = await supabase.auth.updateUser({
         email,
-        data: { user_name: userName },
+        data: { user_name: userName + new Date().getMilliseconds() },
       });
       if (error) {
         setNameError(error);
