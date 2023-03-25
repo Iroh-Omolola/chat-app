@@ -19,12 +19,11 @@ const Auth = () => {
       setError(error.message);
       setType("signup");
       setLoading(false);
-
+console.log("data", data);
 
     }
   }
 console.log("error",error)
-console.log("data",data);
   const signUp = (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
