@@ -1,6 +1,15 @@
 import React from "react";
 
-const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, message }) => {
+const ChatBubble = ({
+  room,
+  myKey,
+  sender,
+  username,
+  time,
+  messageId,
+  userId,
+  message,
+}) => {
   return (
     <div
       key={myKey}
@@ -42,7 +51,7 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           } text-[10px]`}
         >
           <p className="text-[12px]">
-            {room === "" ? "" : ` from ${username} ${{ time }}`}
+            {room === "" ? time : ` from ${username} ${{ time }}`}
           </p>
         </span>
       </div>
