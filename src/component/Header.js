@@ -1,20 +1,19 @@
 import { supabase } from "../lib/api";
 import { IoIosPeople } from "react-icons/io";
 
-const Header = ({ username, room, handleRoomChange }) => {
+const Header = ({createRoom, room, handleRoomChange }) => {
   return (
     <div className="flex items-center justify-between px-4 py-8 bg-background_color">
       <div className="flex items-center space-x-5">
         <span className="text-[white] text-[14px] sm:text-[15px]">
           Chat App
         </span>
-        <span className="text-[white] text-[14px] sm:text-[15px]">
-          {username}
-        </span>
-        <div>
-          <IoIosPeople className="w-10 h-10 cursor-pointer" />
+        <div className="cursor-pointer" onClick={createRoom}>
+          <IoIosPeople className="w-8 h-8" />
+          <h4 className="  text-[10px] sm:text-[14px]">Create Rooms</h4>
         </div>
         <div className="ml-4">
+          <h2>Chat Rooms:</h2>
           <select
             value={room}
             onChange={handleRoomChange}

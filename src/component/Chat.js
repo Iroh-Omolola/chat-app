@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { BsFillSendFill } from "react-icons/bs";
 import { supabase } from "../lib/api";
 import ChatBubble from "./ChatBubble";
+import CreateRoom from "./CreateRoom";
 import Header from "./Header";
 import UserUpdate from "./UserUpdate";
 
@@ -18,6 +19,11 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [nameError, setNameError] = useState("");
+  const [roomName, setRoomName] = useState("");
+  const [purpose, setPurpose] = useState("");
+  const [roomError, setRoomError] = useState("");
+  const [roomLoading, setRoomLoading] = useState(false);
+  const [showRoom, setShowRoom] = useState(false);
   const [checkUserName, setCheckUserName] = useState(false);
   const messagesRef = useRef();
 
@@ -143,6 +149,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
       <Header
         username={user_name}
         room={room}
+        createRoom={() => setShowRoom(true)}
         handleRoomChange={handleRoomChange}
       />
       <div
@@ -185,7 +192,18 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           setUserName={setUserName}
           onUpdateUser={onUpdateUser}
           loading={loading}
-          error={error}
+          error={nameError}
+        />
+      )}
+
+      {showRoom && (
+        <CreateRoom
+          roomName={roomName}
+          purpose={purpose}
+          error={roomError}
+          loading={roomLoading}
+          setPurpose={setPurpose}
+          setRoomName={setRoomName}
         />
       )}
     </div>
