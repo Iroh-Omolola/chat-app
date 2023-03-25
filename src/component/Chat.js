@@ -203,6 +203,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           error={roomError}
           loading={roomLoading}
           setPurpose={setPurpose}
+          onCancel={()=>setShowRoom(false)}
           onCreateRoomSetup={()=>{}}
           setRoomName={setRoomName}
         />
