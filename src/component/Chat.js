@@ -25,6 +25,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [roomError, setRoomError] = useState("");
   const [roomLoading, setRoomLoading] = useState(false);
   const [showRoom, setShowRoom] = useState(false);
+  const [userData, setUserData] = useState("");
   const [checkUserName, setCheckUserName] = useState(false);
   const messagesRef = useRef();
 
@@ -104,7 +105,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           {
             message,
             user_id: userId,
-            message_user_name: userName,
+            message_user_name: userData,
             room,
           },
         ])
@@ -167,7 +168,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     const { data } = await supabase.auth.getUser();
     if (data) {
       setEmail(data.user?.email);
-      setUserName(data.user?.user_metadata?.user_name);
+      setUserData(data.user?.user_metadata?.user_name);
     }
   };
   useEffect(() => {
