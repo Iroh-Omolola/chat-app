@@ -3,9 +3,9 @@
 const CreateRoom = ({roomName,onCreateRoomSetup,onCancel, purpose, error, loading, setPurpose, setRoomName}) => {
 
   return (
-    <div className="overflow-y-auto overflow-x-hidden fixed top-[-45px] mmd:top-0 bg-blackAlpha right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-[100vh]">
+    <div className="overflow-y-auto overflow-x-hidden fixed top-[-45px] mmd:top-0 bg-[blackAlpha] right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-[100vh]">
       <div className="relative p-4 w-full h-[100vh] md:h-auto mx-auto mt-[10%]">
-        <div className="rounded-lg">
+        <div className="rounded-lg bg-[white]">
           <div className="w-full my-[50%] mx-auto md:my-[30%] lg:my-[10%] sm:w-1/2 xl:w-1/3">
             <div>
               <h4 className="text-[16px] mb-2 text-center text-background_color">
