@@ -1,6 +1,6 @@
 
 
-const CreateRoom = ({roomName, purpose, error, loading, setPurpose, setRoomName}) => {
+const CreateRoom = ({roomName,onCreateRoomSetup, purpose, error, loading, setPurpose, setRoomName}) => {
 
   return (
     <div className="w-full my-[50%] md:my-[30%] lg:my-[10%] sm:w-1/2 xl:w-1/3">
@@ -44,7 +44,7 @@ const CreateRoom = ({roomName, purpose, error, loading, setPurpose, setRoomName}
           <div>
             <div className=" flex justify-center flex-col gap-2">
               <button
-                onClick={signUp}
+                onClick={onCreateRoomSetup}
                 className="btn-black  cursor-pointer text-center hover:bg-[black] p-2 bg-background_color text-[white]"
               >
                Create
