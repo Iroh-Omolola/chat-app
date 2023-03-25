@@ -34,7 +34,7 @@ function App() {
             user_id={session?.user?.id}
             setUserName={setUserName}
             userName={userName}
-            username={session?.user?.user_metadata?.user_name}
+            user_name={session?.user?.user_metadata?.user_name}
           />
         </>
       )}

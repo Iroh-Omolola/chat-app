@@ -1,10 +1,10 @@
 import React from "react";
 
-const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
+const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, message }) => {
   return (
     <div
       key={myKey}
-      className={`flex ${
+      className={`flex flex-col ${
         messageId === userId ? "justify-end" : "justify-start"
       }`}
     >
@@ -44,6 +44,7 @@ const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
           {time}
         </span>
       </div>
+
       {messageId === userId && (
         <span>
           <svg
@@ -64,6 +65,7 @@ const ChatBubble = ({ myKey, sender, time, messageId, userId, message }) => {
           </svg>
         </span>
       )}
+      <p className="text-[12px]">{room !== "" ? username : ""}</p>
     </div>
   );
 };
