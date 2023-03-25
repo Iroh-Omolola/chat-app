@@ -4,7 +4,7 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
   return (
     <div
       key={myKey}
-      className={`flex ${
+      className={`flex flex-col ${
         messageId === userId ? "justify-end" : "justify-start"
       }`}
     >
@@ -65,7 +65,7 @@ const ChatBubble = ({room, myKey, sender,username, time, messageId, userId, mess
           </svg>
         </span>
       )}
-      <p>{room !== "" ? username : ""}</p>
+      <p className="text-[12px]">{room !== "" ? username : ""}</p>
     </div>
   );
 };
