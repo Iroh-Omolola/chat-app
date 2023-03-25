@@ -112,6 +112,8 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     if (event.target.value !== "" && userName !== " ") {
       setCheckUserName(true);
       setRoom(event.target.value);
+    } else if (event.target.value === "") {
+      setCheckUserName(false);
     } else {
       setCheckUserName(false);
     }

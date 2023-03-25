@@ -23,7 +23,7 @@ const Header = ({createRoom, room, handleRoomChange }) => {
             onChange={handleRoomChange}
             className="text-white bg-gray-900 rounded-lg"
           >
-            <option defaultValue={""}>Enter room</option>
+            <option value={""}>Enter room</option>
             <option value="general">General</option>
             <option value="random">Random</option>
             <option value="test">Test</option>
