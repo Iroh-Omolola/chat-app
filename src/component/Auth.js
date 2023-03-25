@@ -29,6 +29,7 @@ const Auth = () => {
     setLoading(true);
     if (error !== "") {
       setType("signup");
+      setError("");
     }
     if (error === "") {
       setLoading(false);
@@ -73,7 +74,7 @@ const Auth = () => {
           <h4 className="text-[red] text-center">{error}</h4>
         </div>
       )}
-      {loading && <p>loading.....</p>}
+      {loading && <p className="text-center">loading.....</p>}
       {checkEmail && error === "" && (
         <p className="text-center text-[red]">
           Check your mail and click on the link!!!
