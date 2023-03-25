@@ -3,9 +3,7 @@ import { supabase } from "../lib/api";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
-  const [loginError, setLoginError] = useState("");
   const [error, setError] = useState("");
-  const [data, setData] = useState("");
   const [password, setPassword] = useState("");
   const [type, setType] = useState("signup");
   const [loading, setLoading] = useState(false);
@@ -17,25 +15,26 @@ const Auth = () => {
       password,
     });
 
-    if (error) {
+    if (error !== "") {
       setError(error.message);
-      setType("signup")
-      throw new Error(error.message);
+      setType("signup");
     }
   }
   const signUp = (e) => {
     e.preventDefault();
     setLoading(true);
-    signUpWithEmail(email, password);
-
-    if(error!==""){
-      setType("signup")
+    if (email !== "" && password !== "") {
+      signUpWithEmail(email, password);
     }
-    if(error===""){
+
+    if (error !== "") {
+      setType("signup");
+    }
+    if (error === "") {
       setLoading(false);
       setType("login");
-    }   
-     setError("")
+    }
+    setError("");
   };
 
   async function signInWithOtp() {
@@ -47,19 +46,19 @@ const Auth = () => {
       },
     });
     if (error) {
-      setLoginError(error.message);
+      setError(error.message);
       throw new Error(error.message);
     }
   }
   const signIn = (e) => {
     e.preventDefault();
     setLoading(true);
-    signInWithOtp(email);
-    if(loginError===""){
-      setLoading(false);
-      setCheckEmail(true);
+    if (email !== "") {
+      signInWithOtp(email);
     }
-    setLoginError("");
+    setLoading(false);
+    setCheckEmail(true);
+    setError("");
   };
 
   return (
@@ -69,7 +68,11 @@ const Auth = () => {
           {type === "login" ? "LOG IN" : "SIGN UP"}
         </h4>
       </div>
-
+      {error !== "" && (
+        <div>
+          <h4 className="text-[red] text-center">{error}</h4>
+        </div>
+      )}
       {loading && <p>loading.....</p>}
       {checkEmail &&
         error ===
@@ -79,12 +82,7 @@ const Auth = () => {
             </p>
           )}
       {!loading && !checkEmail && type === "signup" && error === "" && (
-        <div className="border-teal p-8 border-t-12 mb-6 rounded-lg shadow-lg bg-[white]">
-          {error !== "" && (
-            <div>
-              <h4 className="text-[red] text-center">{error}</h4>
-            </div>
-          )}
+        <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
           <div className="mb-4">
             <label className="font-bold text-grey-darker block mb-2">
               Email
@@ -121,13 +119,8 @@ const Auth = () => {
           </div>
         </div>
       )}
-      {!loading && !checkEmail && type === "login" && loginError === "" && (
-        <div className="border-teal p-8 border-t-12 mb-6 rounded-lg shadow-lg bg-[white]">
-          {loginError !== "" && (
-            <div>
-              <h4 className="text-[red] text-center">{loginError}</h4>
-            </div>
-          )}
+      {!loading && !checkEmail && type === "login" && error === "" && (
+        <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
           <div className="mb-4">
             <label className="font-bold text-grey-darker block mb-2">
               Email
