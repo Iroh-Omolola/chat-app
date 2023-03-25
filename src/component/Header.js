@@ -8,12 +8,12 @@ const Header = ({createRoom, room, handleRoomChange }) => {
         <span className="text-[white] text-[14px] sm:text-[15px]">
           Chat App
         </span>
-        <div className="cursor-pointer" onClick={createRoom}>
-          <IoIosPeople className="w-8 h-8" />
+        <div className="cursor-pointer flex flex-col justify-center" onClick={createRoom}>
           <h4 className="  text-[10px] sm:text-[14px]">Create Rooms</h4>
+          <IoIosPeople className="w-8 h-8 text-center" />
         </div>
         <div className="ml-4">
-          <h2>Chat Rooms:</h2>
+          <h2 className="text-[white]">Chat Rooms:</h2>
           <select
             value={room}
             onChange={handleRoomChange}
