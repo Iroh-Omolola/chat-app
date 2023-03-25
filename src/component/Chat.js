@@ -153,7 +153,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
               key={message?.id}
               myKey={message?.id}
               messageId={message?.user_id}
-              time={moment(message?.created_at).format("h:mm:ss a")}
+              time={moment(message?.created_at).format("h:mm a")}
               userId={user_id}
               message={message?.message}
             />
