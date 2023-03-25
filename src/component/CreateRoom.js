@@ -8,7 +8,7 @@ const CreateRoom = ({roomName,onCreateRoomSetup,onCancel, purpose, error, loadin
         <div className="rounded-lg">
           <div className="w-full my-[50%] bg-[white] mx-auto md:my-[30%] lg:my-[10%] sm:w-1/2 xl:w-1/3">
             <div>
-              <h4 className="text-[16px] mb-2 text-center text-background_color">
+              <h4 className="text-[20px] my-2  text-center text-background_color">
                 Create Room
               </h4>
             </div>
