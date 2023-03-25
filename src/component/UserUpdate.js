@@ -40,7 +40,7 @@ const UserUpdate = ({
                   <div className=" flex justify-center flex-col gap-2">
                     <button
                       onClick={onUpdateUser}
-                      className="btn-black text-center cursor-pointer hover:bg-[black] p-2 bg-background_color text-[white]"
+                      className="btn-black rounded-lg text-center cursor-pointer hover:bg-[black] p-2 bg-background_color text-[white]"
                     >
                       Enter
                     </button>
