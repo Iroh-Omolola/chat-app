@@ -33,8 +33,8 @@ const Auth = () => {
     if (error === "") {
       setLoading(false);
       setType("login");
+      setError("");
     }
-    setError("");
   };
 
   async function signInWithOtp() {
@@ -134,7 +134,7 @@ const Auth = () => {
           <div>
             <div className=" flex justify-center flex-col gap-2">
               <button
-                onClick={(e)=>signIn(e)}
+                onClick={(e) => signIn(e)}
                 className="btn-black  cursor-pointer text-center hover:bg-[black] p-2 bg-background_color text-[white]"
               >
                 Sign In
