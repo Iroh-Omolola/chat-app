@@ -4,13 +4,14 @@ import { supabase } from "../lib/api";
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [data, setData] = useState("");
   const [password, setPassword] = useState("");
   const [type, setType] = useState("signup");
   const [loading, setLoading] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
 
   async function signUpWithEmail() {
-    const {  error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -28,8 +29,7 @@ const Auth = () => {
       setLoading(false);
       setType("login");
     }   
-    setError("");
-
+     setError("")
   };
 
   async function signInWithOtp() {
@@ -61,7 +61,7 @@ const Auth = () => {
          { type==="login"?"LOG IN" :"SIGN UP"}
         </h4>
       </div>
-      {error && (
+      {error !=="" && (
         <div>
           <h4 className="text-[red] text-center">{error}</h4>
         </div>
