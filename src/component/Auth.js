@@ -79,7 +79,7 @@ const Auth = () => {
           Check your mail and click on the link!!!
         </p>
       )}
-      {!loading && !checkEmail && type === "signup" && error === "" && (
+      {!loading && !checkEmail && type === "signup" && (
         <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg bg-white">
           <div className="mb-4">
             <label className="font-bold text-grey-darker block mb-2">
