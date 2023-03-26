@@ -53,7 +53,11 @@ const ChatBubble = ({
               } text-[10px]`}
             >
               <p className="text-[12px]">
-                {room === "" ? time : `from ${username !== null ?username : ""}   ${time}`}
+                {room === ""
+                  ? time
+                  : ` ${
+                      username !== null ? `from ${username} ` : ""
+                    }   ${time}`}
               </p>
             </span>
           </div>
