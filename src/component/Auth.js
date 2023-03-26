@@ -68,7 +68,7 @@ const Auth = () => {
 
   return (
     <div className="w-full my-[50%] md:my-[30%] lg:my-[10%] sm:w-1/2 xl:w-1/3">
-      <h4 className="text-[16px] text-center font-semibold text-background_color">
+      <h4 className="text-[16px] mb-4 text-center font-semibold text-background_color">
        WE-CHAT-APP
       </h4>
       <div>
