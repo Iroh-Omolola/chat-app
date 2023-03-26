@@ -34,8 +34,9 @@ const Auth = () => {
       if (error) {
         setLoading(false);
         setType("signup");
-
+        setError("");
       }
+
     }
    
   };
