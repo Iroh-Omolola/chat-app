@@ -201,6 +201,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     }
   }, [message, userId]);
 
+  console.log("user", userName);
   const onUpdateUser = async (e) => {
     e.preventDefault();
     try {
