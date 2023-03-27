@@ -24,8 +24,6 @@ const Header = ({createRoom, rooms, room, handleRoomChange }) => {
             className="text-white bg-gray-900 rounded-lg"
           >
             <option value={""}>Enter room</option>
-            <option value="general">General</option>
-            <option value="random">Random</option>
             {rooms.map((room) => (
               <option value={room?.room_name}>{room?.room_name}</option>
             ))}
