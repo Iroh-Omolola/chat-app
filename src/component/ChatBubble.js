@@ -53,7 +53,7 @@ const ChatBubble = ({
               } text-[10px]`}
             >
               <p className="text-[12px]">
-                {room === "general" && !username
+                {room === "" && !username
                   ? time
                   : `from ${username} ${time} `}
               </p>
