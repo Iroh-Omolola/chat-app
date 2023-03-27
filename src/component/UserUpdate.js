@@ -3,7 +3,6 @@ const UserUpdate = ({
   loading,
   onUpdateUser,
   error,
-  onClose,
   setUserName,
 }) => {
   return (

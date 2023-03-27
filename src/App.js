@@ -5,7 +5,6 @@ import Chat from "./component/Chat";
 
 function App() {
   const [session, setSession] = useState(null);
-  const [userName, setUserName] = useState("");
 
 
   const checkSession = async () => {
@@ -32,8 +31,6 @@ function App() {
         <>
           <Chat
             user_id={session?.user?.id}
-            setUserName={setUserName}
-            userName={userName}
             user_name={session?.user?.user_metadata?.user_name}
           />
         </>

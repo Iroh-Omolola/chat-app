@@ -10,7 +10,7 @@ import UserUpdate from "./UserUpdate";
 let messageSubscription = null;
 let roomSubscription = null;
 
-const Chat = ({ user_name, user_id, userName, setUserName }) => {
+const Chat = ({ user_name, user_id }) => {
   const [messages, setMessages] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [message, setMessage] = useState("");
@@ -19,6 +19,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [email, setEmail] = useState("");
   const [sender, setSender] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [userName, setUserName] = useState("");
   const [error, setError] = useState("");
   const [nameError, setNameError] = useState("");
   const [roomName, setRoomName] = useState("");
@@ -62,7 +63,6 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
         }
       )
       .subscribe();
-
 
     return () => {
       supabase.removeAllChannels();
@@ -149,11 +149,9 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     if (roomName !== "") {
       createRoom(roomName);
       setRoomLoading(true);
-      setShowRoom(false)
+      setShowRoom(false);
       setRoomName("");
       setRoomLoading(false);
-
-
     }
   };
 
@@ -180,7 +178,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   useEffect(() => {
     getUserName();
   }, []);
-  
+
   const handleRoomChange = (event) => {
     if (!userName) {
       setCheckUserName(true);
@@ -202,6 +200,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   }, [message, userId]);
 
   console.log("user", userName);
+
   const onUpdateUser = async (e) => {
     e.preventDefault();
     try {
