@@ -182,7 +182,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   }, []);
 
   const handleRoomChange = (event) => {
-    if (userData !== " ") {
+    if (userName !== " ") {
       setCheckUserName(true);
       setRoom(event.target.value);
     } else {
