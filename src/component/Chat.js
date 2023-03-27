@@ -186,7 +186,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   console.log("checkUserName", checkUserName);
   
   const handleRoomChange = (event) => {
-    if (!userData) {
+    if (!userName) {
       setCheckUserName(true);
       setRoom(event.target.value);
     } else {
@@ -271,7 +271,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           <BsFillSendFill className="w-7 h-7" />
         </button>
       </form>
-      {checkUserName !== false && !userData &&(
+      {checkUserName !== false && !userName && (
         <UserUpdate
           userName={userName}
           setUserName={setUserName}
