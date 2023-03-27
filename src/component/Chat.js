@@ -181,7 +181,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
     getUserName();
   }, []);
 
-  console.log("user", userName)
+  console.log("user", userData)
   const handleRoomChange = (event) => {
     if (userName !== " ") {
       setCheckUserName(true);
