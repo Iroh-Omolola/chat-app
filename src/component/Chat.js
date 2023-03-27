@@ -245,7 +245,7 @@ const Chat = ({ user_name, user_id }) => {
               time={moment(message?.created_at).format("h:mm a")}
               userId={user_id}
               room={room}
-              username={`${message?.message_user_name || userData}`}
+              username={`${message?.message_user_name}`}
               message={message?.message}
             />
           ))}
