@@ -14,7 +14,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   const [messages, setMessages] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [message, setMessage] = useState("");
-  const [room, setRoom] = useState("general");
+  const [room, setRoom] = useState("");
   const [userId, setUserId] = useState("");
   const [email, setEmail] = useState("");
   const [sender, setSender] = useState(false);
@@ -184,7 +184,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
   console.log("user", userData)
   console.log("messages", messages);
   const handleRoomChange = (event) => {
-    if (userName !== " ") {
+    if (userData !== " ") {
       setCheckUserName(true);
       setRoom(event.target.value);
     } else {
