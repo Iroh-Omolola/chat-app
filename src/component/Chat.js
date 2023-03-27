@@ -271,7 +271,7 @@ const Chat = ({ user_name, user_id, userName, setUserName }) => {
           <BsFillSendFill className="w-7 h-7" />
         </button>
       </form>
-      {checkUserName !== false && !userName && (
+      {checkUserName !== false && !userData && (
         <UserUpdate
           userName={userName}
           setUserName={setUserName}
